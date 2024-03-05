@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:learn_flutter/components/loginform.dart';
 import 'package:provider/provider.dart';
 
 class Login extends StatefulWidget {
@@ -16,7 +17,7 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        margin: EdgeInsets.only(top: 10),
+        margin: EdgeInsets.only(top: 25),
         child: Column(
           children: [
             Row(
@@ -34,9 +35,25 @@ class _LoginState extends State<Login> {
                     ))
               ],
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[],
+            Padding(
+              padding: const EdgeInsets.only(top: 20.0),
+              child: const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[LoginForm()],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  ElevatedButton(
+                      onPressed: () {
+                        Navigator.of(context).pushReplacementNamed('/register');
+                      },
+                      child: Text('Register'))
+                ],
+              ),
             )
           ],
         ),
