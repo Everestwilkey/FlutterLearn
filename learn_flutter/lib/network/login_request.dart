@@ -1,24 +1,37 @@
-import 'package:http/http.dart' as http;
-import 'package:flutter/material.dart';
 import 'dart:convert';
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-Future<bool> loginUser(String email, String password) async {
-  const String apiUrl = "http://10.0.2.2:5100/api/v1/auth/login";
+const String apiUrl = "http://10.0.2.2:5100/api/v1/auth/login";
+final FlutterSecureStorage secureStorage = FlutterSecureStorage();
 
-  try {
-    final response = await http.post(Uri.parse(apiUrl),
-        headers: {"Content-Type": 'application/json'},
-        body: jsonEncode({'email': email, 'password': password}));
-    if (response.statusCode == 200) {
-      print("Login successful");
-      return true;
-    } else {
-      print("Login failed");
-      return false;
-    }
-  } catch (e) {
-    // Handle network error or exception here
-    print("Network error or exception occurred: $e");
+// Function to retrieve the authentication token
+Future<String?> getAuthToken() async {
+  return await secureStorage.read(key: 'authToken');
+}
+
+// Function to login user and store token
+Future<bool> loginUser(
+    String email, String password, BuildContext context) async {
+  final response = await http.post(
+    Uri.parse(apiUrl),
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: jsonEncode(<String, String>{
+      'email': email,
+      'password': password,
+    }),
+  );
+
+  if (response.statusCode == 200) {
+    // Store the authentication token securely
+    final token = json.decode(response.body)['token'];
+    await secureStorage.write(key: 'authToken', value: token);
+    return true;
+  } else {
+    // Handle errors, show a message to the user
     return false;
   }
 }

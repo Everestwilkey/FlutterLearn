@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import "package:learn_flutter/network/login_request.dart";
+import 'package:learn_flutter/network/login_request.dart';
 
 class LoginForm extends StatelessWidget {
-  const LoginForm({super.key});
+  const LoginForm({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -59,9 +59,7 @@ class LoginForm extends StatelessWidget {
               onPressed: () async {
                 if (_formKey.currentState!.validate()) {
                   final success = await loginUser(
-                    _emailController.text,
-                    _passwordController.text,
-                  );
+                      _emailController.text, _passwordController.text, context);
 
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
