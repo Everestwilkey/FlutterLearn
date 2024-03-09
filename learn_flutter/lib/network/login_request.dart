@@ -27,8 +27,9 @@ Future<bool> loginUser(
 
   if (response.statusCode == 200) {
     // Store the authentication token securely
-    final token = json.decode(response.body)['token'];
+    final token = response.headers["token"];
     await secureStorage.write(key: 'authToken', value: token);
+    print("token: ${token}");
     return true;
   } else {
     // Handle errors, show a message to the user

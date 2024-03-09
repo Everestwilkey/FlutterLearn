@@ -38,6 +38,13 @@ class _ProfilePageState extends State<ProfilePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Profile'),
+        actions: <Widget>[
+          IconButton(
+            onPressed: () {
+              Navigator.of(context).pushReplacementNamed('/home');
+            },
+            icon: Icon(Icons.account_circle),
+          ),],
       ),
       body: _user == null
           ? const Center(child: CircularProgressIndicator())
