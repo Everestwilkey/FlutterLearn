@@ -27,7 +27,7 @@ class _LoginState extends State<Login> {
                     padding: EdgeInsets.only(top: 40),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(50),
-                      child: Image(
+                      child: const Image(
                         image: AssetImage("assets/logo.png"),
                         width: 200,
                         height: 200,

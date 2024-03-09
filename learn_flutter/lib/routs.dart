@@ -5,5 +5,5 @@ var appRoutes = {
   '/': (context) => const Login(),
   '/home': (context) => const HomePage(),
   '/register': (context) => const Register(),
-  '/profile': (context) => ProfilePage()
+  '/profile': (context) => const ProfilePage()
 };

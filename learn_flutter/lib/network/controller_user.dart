@@ -6,15 +6,14 @@ import 'package:learn_flutter/network/get_authtoken.dart';
 
 Future<User?> getCurrentUser() async {
   // Retrieve authentication token
-  final token = await getAuthToken()??  "" ;
+  final token = await getAuthToken() ?? "";
   final response = await http.get(
     Uri.parse('http://10.0.2.2:5100/api/v1/users/current-user'),
-    headers:{
+    headers: {
       'token': token,
       'Content-Type': 'application/json; charset=UTF-8',
       // Include token in request headers
     },
-    
   );
 
   if (response.statusCode == 200) {
