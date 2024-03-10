@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:learn_flutter/components/posts/post_home.dart';
+import 'package:learn_flutter/network/post/create_new_post.dart';
+import 'package:learn_flutter/network/post/get_all_post.dart';
+
+import '../components/posts/creat_new_post.dart';
 
 final FlutterSecureStorage secureStorage = FlutterSecureStorage();
 
@@ -18,7 +23,7 @@ class HomePage extends StatelessWidget {
         actions: <Widget>[
           IconButton(
             onPressed: () {
-              Navigator.of(context).pushReplacementNamed('/profile');
+              Navigator.of(context).pushNamed('/profile');
             },
             icon: Icon(Icons.account_circle),
           ),
@@ -28,19 +33,25 @@ class HomePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              'Welcome to the Home Page!',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            ElevatedButton(
-              onPressed: () async {
-                String authToken = await getAuthToken();
-                print('Authtoken: $authToken');
-              },
-              child: Text('Print Authtoken to Console'),
+            Expanded(
+              // Wrap PostsPage with Expanded
+              child: PostsPage(),
             ),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return Dialog(
+                child: Addposts(),
+              );
+            },
+          );
+        },
+        child: Icon(Icons.add),
       ),
     );
   }

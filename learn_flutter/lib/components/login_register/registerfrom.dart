@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:learn_flutter/network/register_user.dart';
+import 'package:learn_flutter/network/login_out_register/register_user.dart';
 
 class RegisterForm extends StatelessWidget {
   final _emailController = TextEditingController();

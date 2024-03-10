@@ -2,8 +2,8 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:learn_flutter/components/loginform.dart'; // Make sure the file name is correct
-import 'package:learn_flutter/components/registerfrom.dart';
+import 'package:learn_flutter/components/login_register/loginform.dart'; // Make sure the file name is correct
+import 'package:learn_flutter/components/login_register/registerfrom.dart';
 import 'package:provider/provider.dart';
 
 class Register extends StatefulWidget {

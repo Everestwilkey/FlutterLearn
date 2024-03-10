@@ -2,7 +2,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 import 'package:learn_flutter/class/user.dart';
-import 'package:learn_flutter/network/get_authtoken.dart';
+import 'package:learn_flutter/network/user_controller/get_authtoken.dart';
 
 Future<User?> getCurrentUser() async {
   // Retrieve authentication token
